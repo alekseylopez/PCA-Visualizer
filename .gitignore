@@ -45,3 +45,4 @@ Makefile
 
 # Build
 /pca
+pca_scatter.ppm

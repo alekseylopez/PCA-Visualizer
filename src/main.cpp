@@ -2,6 +2,8 @@
 #include "pca/Matrix.hpp"
 #include "pca/Correlator.hpp"
 #include "pca/EigenSolver.hpp"
+#include "pca/Projector.hpp"
+#include "pca/Renderer.hpp"
 
 #include <iostream>
 #include <string>
@@ -17,41 +19,13 @@ int main(int argc, char** argv)
 
     Matrix X = loadData(s);
 
-    for(int i = 0; i < X.rows(); i++)
-    {
-        for(int j = 0; j < X.cols(); j++)
-        {
-            std::cout << X(i, j) << " ";
-        }
-
-        std::cout << "\n";
-    }
-
-    std::cout << "---\n";
-
     Matrix C = buildCorrelation(X);
-
-    for(int i = 0; i < C.rows(); i++)
-    {
-        for(int j = 0; j < C.cols(); j++)
-        {
-            std::cout << C(i, j) << " ";
-        }
-
-        std::cout << "\n";
-    }
-
-    std::cout << "---\n";
 
     std::vector<std::vector<double>> eigenVecs = solveTopKEigen(C, 2);
 
-    for(auto& v : eigenVecs)
-    {
-        for(auto& vi : v)
-            std::cout << vi << "\n";
-        
-        std::cout << "\n";
-    }
+    std::vector<std::pair<double, double>> coords = project(eigenVecs);
+
+    writeScatterPPM(coords, 600, 600, "pca_scatter.ppm");
 
     return 0;
 }
