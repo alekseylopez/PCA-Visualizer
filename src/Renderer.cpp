@@ -14,7 +14,7 @@ void writeScatterPPM(const std::vector<std::pair<double, double>>& points, int w
     double ymin =  std::numeric_limits<double>::infinity();
     double ymax = -std::numeric_limits<double>::infinity();
 
-    for(auto& [x,y] : points)
+    for(auto& [x, y] : points)
     {
         xmin = std::min(xmin, x);
         xmax = std::max(xmax, x);
@@ -37,7 +37,7 @@ void writeScatterPPM(const std::vector<std::pair<double, double>>& points, int w
 
     // plot each point as a 3x3 pixel square
     
-    for(auto& [x,y] : points)
+    for(auto& [x, y] : points)
     {
         int px = int((x - xmin) / (xmax - xmin) * (width  - 1));
         int py = int((y - ymin) / (ymax - ymin) * (height - 1));
