@@ -1,6 +1,7 @@
 #include "pca/DataLoader.hpp"
 #include "pca/Matrix.hpp"
 #include "pca/Correlator.hpp"
+#include "pca/EigenSolver.hpp"
 
 #include <iostream>
 #include <string>
@@ -37,6 +38,18 @@ int main(int argc, char** argv)
             std::cout << C(i, j) << " ";
         }
 
+        std::cout << "\n";
+    }
+
+    std::cout << "---\n";
+
+    std::vector<std::vector<double>> eigenVecs = solveTopKEigen(C, 2);
+
+    for(auto& v : eigenVecs)
+    {
+        for(auto& vi : v)
+            std::cout << vi << "\n";
+        
         std::cout << "\n";
     }
 
