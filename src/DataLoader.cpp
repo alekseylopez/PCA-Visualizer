@@ -20,6 +20,8 @@ Matrix loadData(const std::string& filename)
     
     std::vector<std::vector<double>> temp;
     std::string line;
+
+    std::getline(fin, line);
     
     while(std::getline(fin, line))
     {
@@ -60,13 +62,13 @@ Matrix loadData(const std::string& filename)
 
     // build matrix
 
-    Matrix R(static_cast<int>(T), static_cast<int>(N));
+    Matrix X(static_cast<int>(T), static_cast<int>(N));
 
     for(size_t i = 0; i < T; i++)
         for(size_t j = 0; j < N; j++)
-            R(static_cast<int>(i), static_cast<int>(j)) = temp[i][j];
+            X(static_cast<int>(i), static_cast<int>(j)) = temp[i][j];
     
-    return R;
+    return X;
 }
 
 }

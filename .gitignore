@@ -39,3 +39,9 @@
 
 # Makefile
 Makefile
+
+# Input
+*.csv
+
+# Build
+/pca
